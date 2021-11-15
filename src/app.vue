@@ -1,152 +1,53 @@
 <template>
   <div class="container">
     <div class="title">Lorem ipsum dolor sit</div>
-<div class="main-wrapper">
-  <vMainWrapper 
-  v-for="product in products"
-  :key="product.id"
-  :product_data="product"
-  @showMore="showId"
-  />
-</div>
- </div>
+    <div class="main-wrapper">
+      <vMainWrapper
+        v-for="product in PRODUCTS"
+        :key="product.id"
+        :product_data="product"
+        @showMore="showId"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
 import vMainWrapper from "./components/v-main-wrapper.vue";
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   components: {
     vMainWrapper,
   },
-       methods: {
-    showId(id) {
-     console.log(id)
-    }
-  },
+
   data() {
     return {
-      products: [
-        {
-          building_id: 73,
-          building_name: "1 этап 1а корпуса",
-          floor: 10,
-          id: 23329,
-          is_studio: 1,
-          number: "163",
-          plan: "/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
-          porch: 3,
-          price: 2956317,
-          rooms: 1,
-          size: "XS",
-          square: 23.66,
-        },
-        {
-          building_id: 74,
-          building_name: "1 этап 1а корпуса",
-          floor: 4,
-          id: 20822,
-          is_studio: 1,
-          number: "163",
-          plan: "/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
-          porch: 3,
-          price: 2992701,
-          rooms: 1,
-          size: "XS",
-          square: 23.87,
-        },
-        {
-          building_id: 75,
-          building_name: "1 этап 1а корпуса",
-          floor: 4,
-          id: 20382,
-          is_studio: 1,
-          number: "163",
-          plan: "/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
-          porch: 3,
-          price: 4952721,
-          rooms: 2,
-          size: "2k",
-          square: 42.87,
-        },
-        {
-          building_id: 76,
-          building_name: "1 этап 1а корпуса",
-          floor: 4,
-          id: 20332,
-          is_studio: 1,
-          number: "163",
-          plan: "/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
-          porch: 3,
-          price: 8862732,
-          rooms: 3,
-          size: "3k",
-          square: 42.87,
-        },
-        {
-          building_id: 32,
-          building_name: "1 этап 1а корпуса",
-          floor: 10,
-          id: 20328,
-          is_studio: 1,
-          number: "163",
-          plan: "/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
-          porch: 3,
-          price: 3956317,
-          rooms: 1,
-          size: "1k",
-          square: 24.99,
-        },
-        {
-          building_id: 37,
-          building_name: "1 этап 1а корпуса",
-          floor: 10,
-          id: 20320,
-          is_studio: 1,
-          number: "163",
-          plan: "/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
-          porch: 3,
-          price: 3956317,
-          rooms: 1,
-          size: "XS",
-          square: 24.99,
-        },
-        {
-          building_id: 17,
-          building_name: "1 этап 1а корпуса",
-          floor: 10,
-          id: 33320,
-          is_studio: 1,
-          number: "163",
-          plan: "/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
-          porch: 3,
-          price: 5956317,
-          rooms: 1,
-          size: "2k",
-          square: 45.36,
-        },
-        {
-          building_id: 87,
-          building_name: "1 этап 1а корпуса",
-          floor: 10,
-          id: 33321,
-          is_studio: 1,
-          number: "163",
-          plan: "/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
-          porch: 3,
-          price: 9956317,
-          rooms: 4,
-          size: "4",
-          square: 66.6,
-        },
-      ],
+   
     };
+  },
 
+computed: {
+...mapGetters([
+  'PRODUCTS'
+]),
+},
+
+  methods: {
+    ...mapActions(["GET_PODUCTS_FROM_API"]),
+    showId(id) {
+      console.log(id);
+    },
+  },
+
+  mounted() {
+    this.GET_PODUCTS_FROM_API();
   },
 };
 </script>
 <style lang="scss">
 .main-wrapper {
-   display: flex;
+  display: flex;
   flex-wrap: wrap;
   padding: 52px 256px;
   justify-content: space-around;

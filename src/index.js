@@ -1,6 +1,7 @@
 import './styles/styles.scss'
 import Vue from 'vue'
 import App from './app.vue'
+import store from './vuex/store.js'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 // import 'bootstrap/dist/css/bootstrap.css'
@@ -11,5 +12,6 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 new Vue({
     el:"#app",
-    render:(h)=>h(App)
+    render:(h)=>h(App),
+    store
 })
