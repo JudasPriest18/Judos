@@ -11,7 +11,7 @@
        "porch":3,
        "price":2956317,
        "rooms":1,
-       "size":"XS",
+       "size":"S",
        "square":23.66
     },
     {
@@ -25,7 +25,7 @@
        "porch":3,
        "price":2992701,
        "rooms":1,
-       "size":"XS",
+       "size":"S",
        "square":23.87
     },
     {
@@ -81,7 +81,7 @@
        "porch":3,
        "price":3956317,
        "rooms":1,
-       "size":"XS",
+       "size":"S",
        "square":24.99
     },
     {
@@ -94,7 +94,7 @@
        "plan":"/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
        "porch":3,
        "price":5956317,
-       "rooms":1,
+       "rooms":2,
        "size":"2k",
        "square":45.36
     },
@@ -108,8 +108,8 @@
        "plan":"/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
        "porch":3,
        "price":9956317,
-       "rooms":4,
-       "size":"4",
+       "rooms":3,
+       "size":"3k",
        "square":66.60
     }
  ]
