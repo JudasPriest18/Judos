@@ -1,4 +1,79 @@
 <template>
+  <!-- <div class="range-group">
+        <div class="range-values">
+          <div class="range-box">{{ minFloor }}</div>
+          <hr />
+          <div class="range-box">{{ maxFloor }}</div>
+        </div>
+        <div class="range-slider">
+          <input
+            type="range"
+            min="1"
+            max="99"
+            step="1"
+            v-model.number="minFloor"
+            @change="setRangeSlider"
+          />
+          <input
+            type="range"
+            min="1"
+            max="99"
+            step="1"
+            v-model.number="maxFloor"
+            @change="setRangeSlider"
+          />
+        </div>
+      </div>
+      <div class="range-group">
+        <div class="range-values">
+          <div class="range-box">{{ minSquare }}</div>
+          <hr />
+          <div class="range-box">{{ maxSquare }}</div>
+        </div>
+        <div class="range-slider">
+          <input
+            type="range"
+            min="9"
+            max="999"
+            step="10"
+            v-model.number="minSquare"
+            @change="setSquareSlider"
+          />
+          <input
+            type="range"
+            min="9"
+            max="999"
+            step="10"
+            v-model.number="maxSquare"
+            @change="setSquareSlider"
+          />
+        </div>
+      </div>
+      <div class="range-group">
+        <div class="range-values">
+          <div class="range-box">{{ minPrice }}</div>
+          <hr />
+          <div class="range-box">{{ maxPrice }}</div>
+        </div>
+        <div class="range-slider">
+          <input
+            type="range"
+            min="0.0"
+            max="99.9"
+            step="0.1"
+            v-model.number="minPrice"
+            @change="setPriceSlider"
+          />
+          <input
+            type="range"
+            min="0.0"
+            max="99.9"
+            step="0.1"
+            v-model.number="maxPrice"
+            @change="setPriceSlider"
+          />
+        </div>
+      </div> -->
   <div class="btn-container">
     <button @click="onClick">
       <span v-if="!isLoading" class="text">{{
@@ -40,6 +115,30 @@ export default {
         return;
       });
     },
+    // setSquareSlider() {
+    //   if (this.minSquare > this.maxSquare) {
+    //     let tmp = this.maxSquare;
+    //     this.maxSquare = this.minSquare;
+    //     this.minSquare = tmp;
+    //   }
+    //   this.selectOption();
+    // },
+    // setPriceSlider() {
+    //   if (this.minPrice > this.maxPrice) {
+    //     let tmp = this.maxPrice;
+    //     this.maxPrice = this.minPrice;
+    //     this.minPrice = tmp;
+    //   }
+    //   this.selectOption();
+    // },
+    //   setRangeSlider() {
+    //       if (this.minFloor > this.maxFloor) {
+    //         let tmp = this.maxFloor;
+    //         this.maxFloor = this.minFloor;
+    //         this.minFloor = tmp;
+    //       }
+    //       this.selectOption();
+    //     },
   },
 };
 </script>
@@ -76,12 +175,11 @@ export default {
   }
 }
 .btn-container {
- 
   button {
     background: #70d24e;
     border-radius: 2px 2px 5px 5px;
     max-width: 250px;
-     width: 100%;
+    width: 100%;
     height: 40px;
     align-items: center;
     border: none;
@@ -93,4 +191,37 @@ export default {
     }
   }
 }
+// .range-group {
+//   display: flex;
+//   flex-direction: column;
+// }
+
+// .range-values {
+//   display: flex;
+//   margin-bottom: 30px
+// ;
+// }
+
+// .range-slider {
+//   width: 200px;
+//   margin: auto 16px;
+//   text-align: center;
+//   position: relative;
+// }
+
+// .range-slider svg,
+// .range-slider input[type="range"] {
+//   position: absolute;
+//   left: 0;
+//   bottom: 0;
+
+// }
+
+// input[type="range"]::-webkit-slider-thumb {
+//   z-index: 2;
+//   position: relative;
+//   top: 2px;
+//   margin-top: -7px;
+//   width: 2px;
+// }
 </style>

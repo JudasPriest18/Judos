@@ -3,82 +3,12 @@
     <div class="title">Lorem ipsum dolor sit</div>
     <div class="filters">
       <vFilter :options="options" @select="selectOption" />
-      <div class="range-group">
-        <div class="range-values">
-          <div class="range-box">{{ minFloor }}</div>
-          <hr />
-          <div class="range-box">{{ maxFloor }}</div>
-        </div>
-        <div class="range-slider">
-          <input
-            type="range"
-            min="1"
-            max="99"
-            step="1"
-            v-model.number="minFloor"
-            @change="setRangeSlider"
-          />
-          <input
-            type="range"
-            min="1"
-            max="99"
-            step="1"
-            v-model.number="maxFloor"
-            @change="setRangeSlider"
-          />
-        </div>
-      </div>
-      <div class="range-group">
-        <div class="range-values">
-          <div class="range-box">{{ minSquare }}</div>
-          <hr />
-          <div class="range-box">{{ maxSquare }}</div>
-        </div>
-        <div class="range-slider">
-          <input
-            type="range"
-            min="9"
-            max="999"
-            step="10"
-            v-model.number="minSquare"
-            @change="setSquareSlider"
-          />
-          <input
-            type="range"
-            min="9"
-            max="999"
-            step="10"
-            v-model.number="maxSquare"
-            @change="setSquareSlider"
-          />
-        </div>
-      </div>
-      <div class="range-group">
-        <div class="range-values">
-          <div class="range-box">{{ minPrice }}</div>
-          <hr />
-          <div class="range-box">{{ maxPrice }}</div>
-        </div>
-        <div class="range-slider">
-          <input
-            type="range"
-            min="1000000"
-            max="9999999"
-            step="10000"
-            v-model.number="minPrice"
-            @change="setPriceSlider"
-          />
-          <input
-            type="range"
-            min="1000000"
-            max="9999999"
-            step="10000"
-            v-model.number="maxPrice"
-            @change="setPriceSlider"
-          />
-        </div>
-      </div>
+    <vSlider />
+<div class="filters_accept">
+    <button class="filters_accept--btn"><span>Применить</span></button>
+    <p>СБРОСИТЬ ФИЛЬТРЫ</p>
     </div>
+</div>
     <div class="main-wrapper">
       <vCatalogItem
         v-for="product in filteredProducts"
@@ -92,18 +22,20 @@
 <script>
 import vCatalogItem from "./components/v-catalog-item.vue";
 import vFilter from "./components/v-filter.vue";
+import vSlider from "./components/v-slider.vue";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
     vCatalogItem,
-    vFilter,
+    vFilter,  
+    vSlider
   },
 
   data() {
     return {
       options: [
-        { name: "All", value: "all" },
+        { name: "All", value: "all"},
         { name: "S", value: 1 },
         { name: "1k", value: 2 },
         { name: "2k", value: 3 },
@@ -111,12 +43,7 @@ export default {
       ],
       selected: "",
       sortedProducts: [],
-      minFloor: 1,
-      maxFloor: 99,
-      minSquare: 9,
-      maxSquare: 999,
-      minPrice: 1000000,
-      maxPrice: 9999999,
+     
     };
   },
 
@@ -139,48 +66,14 @@ export default {
 
     selectOption(option) {
       let vm = this;
+      vm.selected = option.name;
       this.sortedProducts = [...this.PRODUCTS];
-      this.sortedProducts = this.PRODUCTS.filter(function (product) {
-        return product.floor >= vm.minFloor && product.floor <= vm.maxFloor;
-      });
-      this.sortedProducts = this.PRODUCTS.filter(function (product) {
-        return product.square >= vm.minSquare && product.floor <= vm.maxSquare;
-      });
-      this.sortedProducts = this.PRODUCTS.filter(function (product) {
-        return product.price >= vm.minPrice && product.floor <= vm.maxPrice;
-      });
       if (option) {
-        this.sortedProducts = this.PRODUCTS.filter(function (product) {
-          vm.selected = option.name;
+        this.sortedProducts = this.PRODUCTS.filter(function (product) {         
           return product.size === option.name;
         });
       }
-    },
-
-    setRangeSlider() {
-      if (this.minFloor > this.maxFloor) {
-        let tmp = this.maxFloor;
-        this.maxFloor = this.minFloor;
-        this.minFloor = tmp;
-      }
-      this.selectOption();
-    },
-    setSquareSlider() {
-      if (this.minSquare > this.maxSquare) {
-        let tmp = this.maxSquare;
-        this.maxSquare = this.minSquare;
-        this.minSquare = tmp;
-      }
-      this.selectOption();
-    },
-    setPriceSlider() {
-      if (this.minPrice > this.maxPrice) {
-        let tmp = this.maxPrice;
-        this.maxPrice = this.minPrice;
-        this.minPrice = tmp;
-      }
-      this.selectOption();
-    },
+    }, 
   },
 
   mounted() {
@@ -189,6 +82,8 @@ export default {
   },
 };
 </script>
+
+
 <style lang="scss">
 .main-wrapper {
   display: flex;
@@ -198,42 +93,17 @@ export default {
 }
 
 .filters {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-}
-.range-group {
   display: flex;
-  flex-direction: column;
+  &_accept{
+ max-width: 201px;
+ display: flex;
+ flex-direction: column;
+  &--btn {
+    border-radius: 5px;
+   
+  }
 }
-
-.range-values {
-  display: flex;
-  margin-bottom: 30px
-;
-}
-
-.range-slider {
-  width: 200px;
-  margin: auto 16px;
-  text-align: center;
-  position: relative;
-}
-
-.range-slider svg,
-.range-slider input[type="range"] {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  z-index: 2;
-  position: relative;
-  top: 2px;
-  margin-top: -7px;
-  width: 2px;
 }
 
 .range-box {

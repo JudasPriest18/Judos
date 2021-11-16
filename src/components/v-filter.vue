@@ -45,7 +45,10 @@ export default {
 </script>
 <style scoped lang="scss">
 .v-filter {
-  padding: 52px 266px;
+  padding: 51px 28px 6px 15.65%;
+  & p {
+    padding: 2px 3px 0px 15px;
+  }
   &_btn {
     background: #ffffff;
     border: 1px solid #d8d8d8;
