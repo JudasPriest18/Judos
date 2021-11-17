@@ -68,7 +68,7 @@ export default {
       font-size: 16px;
       color: #2c323a;
     }
-    &:target {
+    &:focus {
       background: #70d24e;
       border-radius: 5px;
       & span {
