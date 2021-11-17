@@ -149,4 +149,6 @@ export default {
 .bounce-leave-active {
   animation: bounce-in reverse;
 }
+
+
 </style>

@@ -84,38 +84,58 @@ export default {
   name: "v-slider",
   components: {},
   props: {
-    options: {},
+     minFloor: {
+      type: Number,
+      default() {
+        return 1;
+      }
+     },
+    maxFloor: {
+      type: Number,
+      default() {
+        return 99;
+      }
+     },
+    minSquare: {
+      type: Number,
+      default() {
+        return 1;
+      }
+     },
+    maxSquare: {
+      type: Number,
+      default() {
+        return 999;
+      }
+     },
+    minPrice: {
+      type: Number,
+      default() {
+        return 0.0;
+      }
+     },
+     maxPrice: {
+      type: Number,
+      default() {
+        return 99.9;
+      }
+     },
   },
   data() {
     return {
-      minFloor: 1,
-      maxFloor: 99,
-      minSquare: 1,
-      maxSquare: 999,
-      minPrice: 0.0,
-      maxPrice: 99.9,
+     
     };
   },
   computed: {},
   methods: {
-    selectOption(option) {
-      let vb = this;
-      this.sortedProducts = this.PRODUCTS.filter(function (product) {
-        return product.floor >= vb.minFloor && product.floor <= vb.maxFloor;
-      });
-      this.sortedProducts = this.PRODUCTS.filter(function (product) {
-        return product.square >= vb.minSquare && product.floor <= vb.maxSquare;
-      });
-      this.sortedProducts = this.PRODUCTS.filter(function (product) {
-        return product.price >= vvbm.minPrice && product.floor <= vb.maxPrice;
-      });
-    },
+
   sliderFloor: function () {
       if (this.minFloor > this.maxFloor) {
         var tmp = this.maxFloor;
         this.maxFloor = this.minFloor;
         this.minFloor = tmp;
       }
+      this.selectOption();
     },
     sliderPrice: function () {
       if (this.minPrice > this.maxPrice) {
@@ -123,6 +143,7 @@ export default {
         this.maxPrice = this.minPrice;
         this.minPrice = tmp;
       }
+      this.selectOption();
     },
     sliderSquare: function () {
       if (this.minSquare > this.maxSquare) {
@@ -130,6 +151,7 @@ export default {
         this.maxSquare = this.minSquare;
         this.minSquare = tmp;
       }
+      this.selectOption();
     },
   },
 };

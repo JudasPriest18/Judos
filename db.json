@@ -10,6 +10,7 @@
        "plan":"/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
        "porch":3,
        "price":2956317,
+       "priceDot":2.9,
        "rooms":1,
        "size":"S",
        "square":23.66
@@ -24,6 +25,7 @@
        "plan":"/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
        "porch":3,
        "price":2992701,
+       "priceDot":2.9,
        "rooms":1,
        "size":"S",
        "square":23.87
@@ -38,6 +40,7 @@
        "plan":"/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
        "porch":3,
        "price":4952721,
+       "priceDot":4.9,
        "rooms":2,
        "size":"2k",
        "square":42.87
@@ -52,6 +55,7 @@
        "plan":"/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
        "porch":3,
        "price":8862732,
+       "priceDot":8.8,
        "rooms":3,
        "size":"3k",
        "square":42.87
@@ -66,6 +70,7 @@
        "plan":"/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
        "porch":3,
        "price":3956317,
+       "priceDot":3.9,
        "rooms":1,
        "size":"1k",
        "square":24.99
@@ -80,6 +85,7 @@
        "plan":"/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
        "porch":3,
        "price":3956317,
+       "priceDot":3.9,
        "rooms":1,
        "size":"S",
        "square":24.99
@@ -94,6 +100,7 @@
        "plan":"/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
        "porch":3,
        "price":5956317,
+       "priceDot":5.9,
        "rooms":2,
        "size":"2k",
        "square":45.36
@@ -108,6 +115,7 @@
        "plan":"/img/bb8d/9eeb90d9c7aeeed41fb41c0b5e383013.jpg",
        "porch":3,
        "price":9956317,
+       "priceDot":9.9,
        "rooms":3,
        "size":"3k",
        "square":66.60
