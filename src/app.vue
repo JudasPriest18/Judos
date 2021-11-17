@@ -2,26 +2,7 @@
   <div class="container">
     <div class="title">Lorem ipsum dolor sit</div>
     <div class="filters">
-      <vFilter :options="options" @select="selectOption" />
-      <!-- <div class="filters_checkbox">
-        <label for="S">
-          <input type="checkbox" id="S" value="S" v-model="checkedRoomS" />
-          <div class="filters_checkbox--item">S</div>
-        </label>
-        <label class="filters_checkbox--label" for="1k">
-          <input type="checkbox" id="1k" value="1k" v-model="checkedRoom1k" />
-          <div class="filters_checkbox--item">1k</div>
-        </label>
-        <label class="filters_checkbox--label" for="2k">
-          <input type="checkbox" id="2k" value="2k" v-model="checkedRoom2k" />
-          <div class="filters_checkbox--item">2k</div>
-        </label>
-        <label class="filters_checkbox--label" for="3k">
-          <input type="checkbox" id="3k" value="3k" v-model="checkedRoom3k" />
-          <div class="filters_checkbox--item">3k</div>
-        </label>
-      </div> -->
-
+      <vFilter :options="options" @setRoom="setRoom" />
       <div class="range-slider">
         <p class="font-regular">ЭТАЖ</p>
         <span @change="sliderFloor" class="range-slider_number">
@@ -97,12 +78,11 @@
         />
         <svg width="100%" height="24"></svg>
       </div>
-      <!-- <vSlider /> -->
       <div class="filters_accept">
-        <button class="filters_accept--btn" @click="activateFilters()">
+        <button class="filters_accept--btn" @click="activateFilters">
           <span>Применить</span>
         </button>
-        <p>СБРОСИТЬ ФИЛЬТРЫ</p>
+        <button class="filters_accept--reject" @click="rejectFilters">СБРОСИТЬ ФИЛЬТРЫ</button>
       </div>
     </div>
     <div class="main-wrapper">
@@ -125,15 +105,10 @@ export default {
   components: {
     vCatalogItem,
     vFilter,
-    vSlider,
   },
 
   data() {
     return {
-      // checkedRoomS: '',
-      // checkedRoom1k: '',
-      // checkedRoom2k: '',
-      // checkedRoom3k: '',
       options: [
         { name: "S", value: 1 },
         { name: "1k", value: 2 },
@@ -152,7 +127,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["PRODUCTS"]),
+    ...mapGetters(["PRODUCTS", "INITIAL_PRODUCTS"]),
     filteredProducts() {
       if (this.sortedProducts.length) {
         return this.sortedProducts;
@@ -160,25 +135,11 @@ export default {
         return this.PRODUCTS;
       }
     },
-    //  selectFilters() {
-    //   let vm = this;
-    //   this.sortedProducts = [...this.PRODUCTS];
-    //   this.sortedProducts = this.PRODUCTS.filter(function (product) {
-    //     return (
-    //       product.floor >= vm.minFloor &&
-    //       product.floor <= vm.maxFloor &&
-    //       product.square >= vm.minSquare &&
-    //       product.square <= vm.maxSquare &&
-    //       product.priceDot >= vm.minPrice &&
-    //       product.priceDot <= vm.maxPrice 
-    //     );
-    //   });
-    // },
   },
 
   methods: {
 
-    ...mapActions(["GET_PODUCTS_FROM_API"]),
+    ...mapActions(["GET_PODUCTS_FROM_API", "FILTER_PRODUCTS"]),
     showId(id) {
       console.log(id);
     },
@@ -209,27 +170,32 @@ export default {
 
    
     activateFilters() {
-      // this.selectFilters();
+      this.selectOption()
     },
 
-    selectOption(option) {
-      let vm = this;
-      vm.selected = option.name;
-      this.sortedProducts = [...this.PRODUCTS];
-     
-        this.sortedProducts = this.PRODUCTS.filter(function (product) {
-          return product.size === option.name &&
-           product.floor >= vm.minFloor &&
-          product.floor <= vm.maxFloor &&
-          product.square >= vm.minSquare &&
-          product.square <= vm.maxSquare &&
-          product.priceDot >= vm.minPrice &&
-          product.priceDot <= vm.maxPrice 
+rejectFilters() {
+this.GET_PODUCTS_FROM_API();
+},
 
+    selectOption() {
+        // debugger
+        console.log(this)
+        const ala = this.INITIAL_PRODUCTS.filter((product) => {
+          return product.size === this.selected &&
+          product.floor >= this.minFloor &&
+          product.floor <= this.maxFloor &&
+          product.square >= this.minSquare &&
+          product.square <= this.maxSquare &&
+          product.priceDot >= this.minPrice &&
+          product.priceDot <= this.maxPrice
         });
-      
-
+        this.FILTER_PRODUCTS(ala)
     },
+
+    setRoom(name) {
+      // debugger
+      this.selected = name
+    }
   },
 
   mounted() {
@@ -256,8 +222,13 @@ export default {
     width: 201px;
     display: flex;
     flex-direction: column;
+    margin-top: 45px;
     &--btn {
       border-radius: 5px;
+    }
+    &--reject {
+      background: none;
+margin: 0px;
     }
   }
 }

@@ -88,17 +88,19 @@ export default {
       height: 385px;
     }
     &:hover .main_more {
-      transform:translateY(-60px)
+      transform:translateY(-60px);
+        transition-duration: .3s;
     }
      &:hover .main_scale{
       transform: scale(0.8);
+        transition-duration: .3s;
     }
     &:hover .main_translate{
       transform:translateY(-40px);
+        transition-duration: .3s;
       //  transform:translateX(-30px)
     }
   }
- 
   &_info {
     display: flex;
     justify-content: space-between;
@@ -144,10 +146,11 @@ export default {
   }
 }
 .bounce-enter-active {
-  animation: bounce-in;
+  transition: all .3s ease;
 }
 .bounce-leave-active {
-  animation: bounce-in reverse;
+   transform: translateX(10px);
+  opacity: 0;
 }
 
 
